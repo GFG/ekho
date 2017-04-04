@@ -1,0 +1,32 @@
+{
+  "name": "gfg-nodejs-libary-ekho",
+  "version": "0.0.1",
+  "description": "AWS Lambda invocation wrapper",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GFG/ekho.git"
+  },
+  "keywords": [
+  ],
+  "author": {
+    "name": "GFG",
+    "email": "nedved.yang@global-fashion-group"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GFG/ekho/issues"
+  },
+  "homepage": "https://github.com/GFG/ekho",
+  "devDependencies": {
+    "mocha": "*",
+    "chai":"*",
+    "jsdoc":"*"
+  },
+  "dependencies": {
+    "aws-sdk" : "*"
+  }
+}
