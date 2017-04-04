@@ -1,6 +1,6 @@
 {
   "name": "gfg-nodejs-libary-ekho",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "AWS Lambda invocation wrapper",
   "main": "index.js",
   "scripts": {

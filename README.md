@@ -4,16 +4,18 @@ this is to standize the services invocation among lambda functions
 
 ## Installation
 
-  `npm install @jdaudier/number-formatter`
+  `npm i gfg-nodejs-libary-ekho `
+  
+  or in package json without npm registry
+  
+`  gfg-nodejs-libary-ekho": "git+ssh://git@github.com:GFG/ekho.git#v0.0.1`
 
 ## Usage
 
-    var numFormatter = require('@jdaudier/number-formatter');
+    var ekho = require('gfg-nodejs-libary-ekho');
 
-    var formattedNum = numFormatter(35666);
+    ekho.invokeLambdaFunction(options, params, callback); // please check the API
   
-  
-  Output should be `35,666`
 
 
 ## Tests
