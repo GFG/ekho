@@ -8,13 +8,15 @@ this is to standize the services invocation among lambda functions
   
   or in package json without npm registry
   
-`  gfg-nodejs-libary-ekho": "git+ssh://git@github.com:GFG/ekho.git#v0.0.1`
+`  gfg-nodejs-libary-ekho": "git+ssh://git@github.com:GFG/ekho.git#vX.X.X`
+
+X.X.X is the current release version.
 
 ## Usage
 
     var ekho = require('gfg-nodejs-libary-ekho');
 
-    ekho.invokeLambdaFunction(options, params, callback); // please check the API
+    ekho.invokeLambdaFunction(context, options, params, callback); // please check the API
   
 
 

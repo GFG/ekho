@@ -22,7 +22,10 @@ describe('ekho calling', function() {
         var options = {
             region:"ap-southeast-1"
         };
-        ekho.invokeLambdaFunction(options, params, function(err,data) {
+        var context = {
+
+        };
+        ekho.invokeLambdaFunction(context, options, params, function(err,data) {
             if (err){
                 console.log(err);
             }

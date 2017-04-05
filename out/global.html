@@ -179,7 +179,7 @@
 
     
 
-    <h4 class="name" id="invokeLambdaFunction"><span class="type-signature"></span>invokeLambdaFunction<span class="signature">(options, params, callback)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="invokeLambdaFunction"><span class="type-signature"></span>invokeLambdaFunction<span class="signature">(context, options<span class="signature-attributes">opt</span>, params, callback)</span><span class="type-signature"></span></h4>
 
     
 
@@ -211,6 +211,8 @@ API:
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -219,6 +221,37 @@ API:
     </thead>
 
     <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">AWS Lambda uses this parameter to provide your handler the runtime information of the Lambda function that is executing..</td>
+        </tr>
+
     
 
         <tr>
@@ -236,10 +269,97 @@ API:
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last">the options passedin to create the lambda service object. It can be null.</td>
+            <td class="description last">the options passedin to create the lambda service object. It can be null. Ref: http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Lambda.html
+
+Options Hash (options):
+<ul style="list-style: none;">
+<li><b>params</b> (map)
+    — An optional map of parameters to bind to every request sent by this service object. For more information on bound parameters, see "Working with Services" in the Getting Started Guide.
+<li>endpoint (String)
+— The endpoint URI to send requests to. The default endpoint is built from the configured region. The endpoint should be a string like 'https:*{service}.{region}.amazonaws.com'.
+<li>accessKeyId (String)
+— your AWS access key ID.
+<li>secretAccessKey (String)
+— your AWS secret access key.
+<li>sessionToken (AWS.Credentials)
+— the optional AWS session token to sign requests with.
+<li>credentials (AWS.Credentials)
+— the AWS credentials to sign requests with. You can either specify this object, or specify the accessKeyId and secretAccessKey options directly.
+<li>credentialProvider (AWS.CredentialProviderChain)
+— the provider chain used to resolve credentials if no static credentials property is set.
+<li>region (String)
+— the region to send service requests to. See AWS.Lambda.region for more information.
+<li>maxRetries (Integer)
+— the maximum amount of retries to attempt with a request. See AWS.Lambda.maxRetries for more information.
+<li>maxRedirects (Integer)
+— the maximum amount of redirects to follow with a request. See AWS.Lambda.maxRedirects for more information.
+<li>sslEnabled (Boolean)
+— whether to enable SSL for requests.
+<li>paramValidation (Boolean|map)
+— whether input parameters should be validated against the operation description before sending the request. Defaults to true. Pass a map to enable any of the following specific validation features:
+<li>min [Boolean]
+— Validates that a value meets the min constraint. This is enabled by default when paramValidation is set to true.
+<li>max [Boolean]
+— Validates that a value meets the max constraint.
+<li>pattern [Boolean]
+— Validates that a string value matches a regular expression.
+<li>enum [Boolean]
+— Validates that a string value matches one of the allowable enum values.
+<li>computeChecksums (Boolean)
+— whether to compute checksums for payload bodies when the service accepts it (currently supported in S3 only)
+<li>convertResponseTypes (Boolean)
+— whether types are converted when parsing response data. Currently only supported for JSON based services. Turning this off may improve performance on large response payloads. Defaults to true.
+<li>correctClockSkew (Boolean)
+— whether to apply a clock skew correction and retry requests that fail because of an skewed client clock. Defaults to false.
+<li>s3ForcePathStyle (Boolean)
+— whether to force path style URLs for S3 objects.
+<li>s3BucketEndpoint (Boolean)
+— whether the provided endpoint addresses an individual bucket (false if it addresses the root API endpoint). Note that setting this configuration option requires an endpoint to be provided explicitly to the service constructor.
+<li>s3DisableBodySigning (Boolean)
+— whether S3 body signing should be disabled when using signature version v4. Body signing can only be disabled when using https. Defaults to true.
+<li>retryDelayOptions (map)
+— A set of options to configure the retry delay on retryable errors. Currently supported options are:
+<li>base [Integer] — The base number of milliseconds to use in the exponential backoff for operation retries. Defaults to 100 ms for all services accept DynamoDB, where it defaults to 50ms.
+<li>customBackoff [function]
+— A custom function that accepts a retry count and returns the amount of time to delay in milliseconds. The base option will be ignored if this option is supplied.
+<li>httpOptions (map)
+— A set of options to pass to the low-level HTTP request. Currently supported options are:
+<li>proxy [String]
+— the URL to proxy requests through
+<li>agent [http.Agent, https.Agent]
+— the Agent object to perform HTTP requests with. Used for connection pooling. Defaults to the global agent (http.globalAgent) for non-SSL connections. Note that for SSL connections, a special Agent object is used in order to enable peer certificate verification. This feature is only available in the Node.js environment.
+<li>timeout [Integer]
+— Sets the socket to timeout after timeout milliseconds of inactivity on the socket. Defaults to two minutes (120000).
+<li>xhrAsync [Boolean]
+— Whether the SDK will send asynchronous HTTP requests. Used in the browser environment only. Set to false to send requests synchronously. Defaults to true (async on).
+<li>xhrWithCredentials [Boolean]
+— Sets the "withCredentials" property of an XMLHttpRequest object. Used in the browser environment only. Defaults to false.
+<li>apiVersion (String, Date)
+— a String in YYYY-MM-DD format (or a date) that represents the latest possible API version that can be used in all services (unless overridden by apiVersions). Specify 'latest' to use the latest possible version.
+<li>apiVersions (map<String, String|Date>)
+— a map of service identifiers (the lowercase service class name) with the API version to use when instantiating a service. Specify 'latest' for each individual that can use the latest available version.
+<li>logger (#write, #log)
+— an object that responds to .write() (like a stream) or .log() (like the console object) in order to log information about requests
+<li>systemClockOffset (Number)
+— an offset value in milliseconds to apply to all signing times. Use this to compensate for clock skew when your system may be out of sync with the service time. Note that this configuration option can only be applied to the global AWS.config object and cannot be overridden in service-specific configuration. Defaults to 0 milliseconds.
+<li>signatureVersion (String)
+— the signature version to sign requests with (overriding the API configuration). Possible values are: 'v2', 'v3', 'v4'.
+<li>signatureCache (Boolean)
+— whether the signature to sign requests with (overriding the API configuration) is cached. Only applies to the signature version 'v4'. Defaults to true.
+</ul></td>
         </tr>
 
     
@@ -259,10 +379,63 @@ API:
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last">the options passedin to create the lambda service object. It can be null.</td>
+            <td class="description last">the options passedin to create the lambda service object. It can be null. defaults to: {} ,Ref: http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Lambda.html
+
+<ul style="list-style: none;">
+<li>FunctionName — (String)
+- Name of the Lambda function whose resource policy you are updating by adding a new permission.
+You can specify a function name (for example, Thumbnail) or you can specify Amazon Resource Name (ARN) of the function (for example, arn:aws:lambda:us-west-2:account-id:function:ThumbNail). AWS Lambda also allows you to specify partial ARN (for example, account-id:Thumbnail). Note that the length constraint applies only to the ARN. If you specify only the function name, it is limited to 64 character in length.
+
+<li>StatementId — (String)
+- A unique statement identifier.
+
+<li>Action — (String)
+- The AWS Lambda action you want to allow in this statement. Each Lambda action is a string starting with lambda: followed by the API name . For example, lambda:CreateFunction. You can use wildcard (lambda:*) to grant permission for all AWS Lambda actions.
+
+<li>Principal — (String)
+- The principal who is getting this permission. It can be Amazon S3 service Principal (s3.amazonaws.com) if you want Amazon S3 to invoke the function, an AWS account ID if you are granting cross-account permission, or any valid AWS service principal such as sns.amazonaws.com. For example, you might want to allow a custom application in another AWS account to push events to AWS Lambda by invoking your function.
+
+<li>SourceArn — (String)
+- This is optional; however, when granting Amazon S3 permission to invoke your function, you should specify this field with the Amazon Resource Name (ARN) as its value. This ensures that only events generated from the specified source can invoke the function.
+- If you add a permission for the Amazon S3 principal without providing the source ARN, any AWS account that creates a mapping to your function ARN can send events to invoke your Lambda function from Amazon S3.
+- SourceAccount — (String)
+- This parameter is used for S3, SES, CloudWatch Logs and CloudWatch Rules only. The AWS account ID (without a hyphen) of the source owner. For example, if the SourceArn identifies a bucket, then this is the bucket owner's account ID. You can use this additional condition to ensure the bucket you specify is owned by a specific account (it is possible the bucket owner deleted the bucket and some other AWS account created the bucket). You can also use this condition to specify all sources (that is, you don't specify the SourceArn) owned by a specific account.
+
+<li>EventSourceToken — (String)
+- A unique token that must be supplied by the principal invoking the function. This is currently only used for Alexa Smart Home functions.
+
+<li>Qualifier — (String)
+- You can use this optional query parameter to describe a qualified ARN using a function version or an alias name. The permission will then apply to the specific qualified ARN. For example, if you specify function version 2 as the qualifier, then permission applies only when request is made using qualified function ARN:
+- arn:aws:lambda:aws-region:acct-id:function:function-name:2
+- If you specify an alias name, for example PROD, then the permission is valid only for requests made using the alias ARN:
+- arn:aws:lambda:aws-region:acct-id:function:function-name:PROD
+- If the qualifier is not specified, the permission is valid only when requests is made using unqualified function ARN.
+- arn:aws:lambda:aws-region:acct-id:function:function-name
+</ul>
+e.g.
+<pre><code>
+var params = {
+      Action: 'STRING_VALUE',
+      FunctionName: 'STRING_VALUE',
+      Principal: 'STRING_VALUE',
+      StatementId: 'STRING_VALUE',
+      EventSourceToken: 'STRING_VALUE',
+      Qualifier: 'STRING_VALUE',
+      SourceAccount: 'STRING_VALUE',
+      SourceArn: 'STRING_VALUE'
+  };
+</code></pre></td>
         </tr>
 
     
@@ -281,6 +454,14 @@ API:
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -326,7 +507,7 @@ API:
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ekho.js.html">ekho.js</a>, <a href="ekho.js.html#line17">line 17</a>
+        <a href="ekho.js.html">ekho.js</a>, <a href="ekho.js.html#line140">line 140</a>
     </li></ul></dd>
     
 
@@ -374,7 +555,7 @@ API:
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Apr 04 2017 16:48:39 GMT+0800 (SGT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Apr 05 2017 10:01:47 GMT+0800 (SGT)
 </footer>
 
 <script> prettyPrint(); </script>
